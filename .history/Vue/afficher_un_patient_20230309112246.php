@@ -68,7 +68,7 @@ if ($_SESSION["acces"] != 'y') {
 
                         </div>
                         <div class="en_bref">
-                            <form action="../Controller/afficher_un_patient.php" method="post">
+                            <form action="../Controller/.php" method="post">
                                 <br />
                                 <label>Nom :</label>
                                 <input class="textfield_form" type="text" name="Nom_Patient" size="50" /><br />
