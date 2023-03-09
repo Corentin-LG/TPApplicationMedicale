@@ -39,17 +39,6 @@ if (isset($_POST["Nom_Patient"])) {
         $patient['Departement_Patient'] . ' ' . $patient['Situation_Familiale_Patient'] . ' ' . $patient['Affiliation_Mutuelle'] . 
         $patient['Date_Creation_Dossier'] . '</option>';
     }
-        // echo "<td>" . $row['Id_Patient'] . "</td>";
-        // echo "<td>" . $row['Nom_Patient'] . "</td>";
-        // echo "<td>" . $row['Prenom_Patient'] . "</td>";
-        // echo "<td>" . $row['Sexe_Patient'] . "</td>";
-        // echo "<td>" . $row['Adresse_Patient'] . "</td>";
-        // echo "<td>" . $row['Ville_Patient'] . "</td>";
-        // echo "<td>" . $row['Departement_Patient'] . "</td>";
-        // echo "<td>" . $row['Date_Naissance_Patient'] . "</td>";
-        // echo "<td>" . $row['Situation_Familiale_Patient'] . "</td>";
-        // echo "<td>" . $row['Affiliation_Mutuelle'] . "</td>";
-        // echo "<td>" . $row['Date_Creation_Dossier'] . "</td></tr></tbody></table>";
     } else {
         echo "0 results";
     }
