@@ -18,7 +18,7 @@
                                    ."'".$_POST["Id_Medecin"]."'"
                                    .")";
         
-                                   $Util->dbConnection();
+        $Util->dbConnection();
         
         if ($Util->mysqli->connect_error) {
             die('Erreur de connexion ('.$Util->mysqli->connect_errno.')'. $Util->mysqli->connect_error);

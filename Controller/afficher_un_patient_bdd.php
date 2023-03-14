@@ -34,11 +34,20 @@ if (isset($_POST["Nom_Patient"])) {
                 <tbody>";
     $patients = mysqli_fetch_all($result, MYSQLI_ASSOC);
     foreach ($patients as $patient) {
-        echo '<option value="' . $patient['Id_Patient'] . '">' . $patient['Nom_Patient'] . ' ' . $patient['Prenom_Patient'] .  ' ' . 
-        $patient['Sexe_Patient'] . ' ' . $patient['Adresse_Patient'] . ' ' . $patient['Ville_Patient'] . ' ' . 
-        $patient['Departement_Patient'] . ' ' . $patient['Situation_Familiale_Patient'] . ' ' . $patient['Affiliation_Mutuelle'] . 
-        $patient['Date_Creation_Dossier'] . '</option>';
+        echo '<tr><td>' . 
+        $patient['Id_Patient'] . '</td><td>' . 
+        $patient['Nom_Patient'] . '</td><td>' . 
+        $patient['Prenom_Patient'] .  '</td><td>' . 
+        $patient['Sexe_Patient'] . '</td><td>' .
+        $patient['Adresse_Patient'] . '</td><td>' . 
+        $patient['Ville_Patient'] . '</td><td>' . 
+        $patient['Departement_Patient'] . '</td><td>' . 
+        $patient['Date_Naissance_Patient'] . '</td><td>' . 
+        $patient['Situation_Familiale_Patient'] . '</td><td>' . 
+        $patient['Affiliation_Mutuelle'] . '</td><td>' . 
+        $patient['Date_Creation_Dossier'] . '</td>';
     }
+    echo "</tbody>";
     } else {
         echo "0 results";
     }
