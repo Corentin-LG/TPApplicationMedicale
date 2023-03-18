@@ -16,7 +16,6 @@ if ($_SESSION["acces"] != 'y') {
     $Secretaire = $Utilisateur->getSecretaire();
 }
 
-
 ?>
 <html>
 
@@ -33,6 +32,8 @@ if ($_SESSION["acces"] != 'y') {
     <link rel="stylesheet" href="js/jquery/css/ui-lightness/jquery-ui-1.9.2.custom.css" type="text/css" />
     <link rel="shortcut icon" href="bootstrap/img/brain_icon_2.ico" />
 </head>
+
+
 
 <body>
     <div class="container">
@@ -68,14 +69,16 @@ if ($_SESSION["acces"] != 'y') {
 
                         </div>
                         <div class="en_bref">
-                            <form action="../Controller/afficher_un_patient_bdd.php" method="post">
+                            <form action="../Vue/details_un_patient.php" method="post">
                                 <br />
                                 <label>Nom :</label>
                                 <input class="textfield_form" type="text" name="Nom_Patient" size="50" /><br />
                                 <br /><br />
+                                <input type="submit" name="valider" value="Chercher" />
                                 <input type="reset" name="effacer" value="Effacer" />
-                                <input type="submit" name="valider" value="Ajouter" />
                             </form>
+                                <!-- <input type="text" name="N_Patient"><br>
+                                <button onclick="getNP()">Click me</button> -->
                         </div>
                     </div>
                     <div class="Right-body">
