@@ -9,7 +9,7 @@
                                 <br />
                                 <a href="afficher_un_patient.php"><i class="icon-search"></i> Chercher un patient</a>
                                 <hr />
-                                <a href="#"><i class="icon-calendar"></i> Liste des rendez-vous</a>
+                                <a href="affichage_rendez_vous.php"><i class="icon-calendar"></i> Liste des rendez-vous</a>
                                 <hr />
                                 <a href="ajout_rendez_vous.php"><i class="icon-plus-sign"></i> Ajouter un rendez-vous</a>
                                 <br />
