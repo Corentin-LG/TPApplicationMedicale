@@ -10,7 +10,7 @@ require('header_generique_secretaire.php');
 
                         </div>
                         <div class="en_bref">
-                            <form action="../Controller/ajout_rendez_vous_bdd.php" method="post">
+                            <form action="../Controller/secretaire_ajout_rendez_vous_bdd.php" method="post">
                                 <br />
                                 <label>Date :</label>
                                 <input class="textfield_form" type="text" name="Date_Rendez_Vous" size="50" /><br />

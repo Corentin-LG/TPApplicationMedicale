@@ -1,6 +1,6 @@
 <?php
 
-require('../Controller/affichage_patient_bdd.php');
+require('../Controller/secretaire_affichage_patient_bdd.php');
 
 session_start();
 

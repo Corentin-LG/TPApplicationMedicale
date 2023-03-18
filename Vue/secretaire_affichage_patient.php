@@ -11,7 +11,7 @@ require('header_generique_secretaire.php');
                         </div>
                         <div class="en_bref">
 
-                            <form action="../Controller/affichage_patient_bdd.php" method="get">
+                            <form action="../Controller/secretaire_affichage_patient_bdd.php" method="get">
 
                                 <table>
                                     <thead>
