@@ -210,5 +210,72 @@ class Util {
             error_log('Erreur de connexion ('.$this->mysqli->connect_errno.')'. $this->mysqli->connect_error);
         }
     }*/
-       
+           /**
+     * 
+     * @param type $Nom_Patient
+     * @return \Patient[]
+     */
+    public function searchPatientByName($Nom_Patient){
+        $Patients = array();
+        
+        $Query = "SELECT * FROM patient WHERE Nom_Patient = '" . $_POST['Nom_Patient'] . "'";
+        
+        $this->dbConnection();
+        
+        if ($this->mysqli->connect_error) {
+            die('Erreur de connexion ('.$this->mysqli->connect_errno.')'. $this->mysqli->connect_error);
+        }
+        
+        else{
+            if(($result = $this->mysqli->query($Query))){
+                while($ligne = $result->fetch_assoc()){
+                    $unPatient = new Patient();
+                    $unPatient->Id_Patient = $ligne['Id_Patient'];
+                    $unPatient->Nom_Patient = $ligne['Nom_Patient'];
+                    $unPatient->Prenom_Patient = $ligne['Prenom_Patient'];
+                    $unPatient->Sexe_Patient = $ligne['Sexe_Patient'];
+                    $unPatient->Adresse_Patient = $ligne['Adresse_Patient'];
+                    $unPatient->Ville_Patient = $ligne['Ville_Patient'];
+                    $unPatient->Departement_Patient = $ligne['Departement_Patient'];
+                    $unPatient->Date_Naissance_Patient = $ligne['Date_Naissance_Patient'];
+                    $unPatient->Situation_Familiale_Patient = $ligne['Situation_Familiale_Patient'];
+                    $unPatient->Affiliation_Mutuelle = $ligne['Affiliation_Mutuelle'];
+                    $unPatient->Date_Creation_Dossier = $ligne['Date_Creation_Dossier'];
+                    array_push($Patients,$unPatient);
+                }
+            }
+        }
+        return $Patients;
+    }
+
+     /**
+     *
+     * @return \Rendez_vous[]
+     */
+    public function getAllRendezVous() : array {
+        $RDVs = array();
+        
+        $Query = "SELECT * FROM rendez_vous";
+        
+        $this->dbConnection();
+        
+        if ($this->mysqli->connect_error) {
+            die('Erreur de connexion ('.$this->mysqli->connect_errno.')'. $this->mysqli->connect_error);
+        }
+        
+        else{
+            if(($result = $this->mysqli->query($Query))){
+                while($ligne = $result->fetch_assoc()){
+                    $unRDV = new Rendez_Vous();
+                    $unRDV->Id_Rendez_Vous = $ligne['Id_Rendez_Vous'];
+                    $unRDV->Date_Rendez_Vous = $ligne['Date_Rendez_Vous'];
+                    $unRDV->Salle_Rendez_Vous = $ligne['Salle_Rendez_Vous'];
+                    $unRDV->Id_Patient = $ligne['Id_Patient'];
+                    $unRDV->Id_Medecin = $ligne['Id_Medecin'];
+                    array_push($RDVs,$unRDV);
+                }
+            }
+        }
+        return $RDVs;
+    }
 }

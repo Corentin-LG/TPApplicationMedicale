@@ -1,6 +1,7 @@
 <?php
 
-require('../Controller/affichage_patient_bdd.php');
+require('../Controller/Util.php');
+
 
 session_start();
 
@@ -14,6 +15,9 @@ if ($_SESSION["acces"] != 'y') {
     $Secretaire = new Secretaire();
     $Secretaire = $Utilisateur->getSecretaire();
 }
+
+
+
 ?>
 <html>
 
@@ -45,6 +49,7 @@ if ($_SESSION["acces"] != 'y') {
 
                         </div>
                         <div class="Logo">
+
                         </div>
                     </div>
                     <div class="Horizontal-menu">
@@ -58,50 +63,44 @@ if ($_SESSION["acces"] != 'y') {
                     </div>
                     <div class="Left-body">
                         <div class="Left-body-head">
-                            Consulter patients
+                            Détails du patient
                         </div>
                         <div class="infos">
 
                         </div>
                         <div class="en_bref">
-
-                            <form action="../Controller/affichage_patient_bdd.php" method="get">
-
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th>Id_Patient</th>
-                                            <th>Nom</th>
-                                            <th>Prénom</th>
-                                            <th>Sexe</th>
-                                            <th>Adresse</th>
-                                            <th>Ville</th>
-                                            <th>Département</th>
-                                            <th>Date de naissance</th>
-                                            <th>Situation familiale</th>
-                                            <th>Affiliation mutuelle</th>
-                                            <th>Date de création du dossier</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php while ($row = mysqli_fetch_assoc($result)) { ?>
-                                            <tr>
-                                                <td><?php echo $row['Id_Patient']; ?></td>
-                                                <td><?php echo $row['Nom_Patient']; ?></td>
-                                                <td><?php echo $row['Prenom_Patient']; ?></td>
-                                                <td><?php echo $row['Sexe_Patient']; ?></td>
-                                                <td><?php echo $row['Adresse_Patient']; ?></td>
-                                                <td><?php echo $row['Ville_Patient']; ?></td>
-                                                <td><?php echo $row['Departement_Patient']; ?></td>
-                                                <td><?php echo $row['Date_Naissance_Patient']; ?></td>
-                                                <td><?php echo $row['Situation_Familiale_Patient']; ?></td>
-                                                <td><?php echo $row['Affiliation_Mutuelle']; ?></td>
-                                                <td><?php echo $row['Date_Creation_Dossier']; ?></td>
-                                            </tr>
-                                        <?php } ?>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Id_Patient</th>
+                                        <th>Nom</th>
+                                        <th>Prénom</th>
+                                        <th>Sexe</th>
+                                        <th>Adresse</th>
+                                        <th>Ville</th>
+                                        <th>Département</th>
+                                        <th>Date de naissance</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    $nomPatientRecu = $_POST["Nom_Patient"];
+                                    $tableauPatient = $Util->searchPatientByName($nomPatientRecu);
+                                    foreach ($tableauPatient as $patient) {
+                                        echo "<tr>";
+                                        echo "<td>" . $patient->getId_Patient() . "</td>";
+                                        echo "<td>" . $patient->getNom_Patient() . "</td>";
+                                        echo "<td>" . $patient->getPrenom_Patient() . "</td>";
+                                        echo "<td>" . $patient->getSexe_Patient() . "</td>";
+                                        echo "<td>" . $patient->getAdresse_Patient() . "</td>";
+                                        echo "<td>" . $patient->getVille_Patient() . "</td>";
+                                        echo "<td>" . $patient->getDepartement_Patient() . "</td>";
+                                        echo "<td>" . $patient->getDate_Naissance_Patient() . "</td>";
+                                        echo "</tr>";
+                                    }
+                                    ?>
                                     </tbody>
-                                </table>
-                            </form>
+                            </table>
                         </div>
                     </div>
                     <div class="Right-body">
@@ -114,7 +113,7 @@ if ($_SESSION["acces"] != 'y') {
                                 <br />
                                 <a href="afficher_un_patient.php"><i class="icon-search"></i> Chercher un patient</a>
                                 <hr />
-                                <a href="affichage_rendez_vous.php"><i class="icon-calendar"></i> Liste des rendez-vous</a>
+                                <a href="#"><i class="icon-calendar"></i> Liste des rendez-vous</a>
                                 <hr />
                                 <a href="ajout_rendez_vous.php"><i class="icon-plus-sign"></i> Ajouter un rendez-vous</a>
                                 <br />
@@ -123,6 +122,8 @@ if ($_SESSION["acces"] != 'y') {
                                 <a href="../Controller/deconnexion.php"><i class="icon-off"></i> Se d&eacute;connecter</a>
                             </div>
                         </div>
+
+
                     </div>
                 </div>
                 <div class="footer">
