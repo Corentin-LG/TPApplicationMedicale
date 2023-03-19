@@ -13,7 +13,7 @@ require('header_generique_medecin.php');
 
                             <form>
 
-                                <table>
+                                <table id="table1">
                                     <thead>
                                         <tr>
                                             <th>Id_Patient</th>
