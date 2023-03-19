@@ -13,7 +13,7 @@
    else{
         $Util = new Util();
         $Utilisateur = $Util->getUtilisateurById($_SESSION["ID_CONNECTED_USER"]);
-        $Medecin = new Secretaire();
+        $Medecin = new Medecin();
         $Medecin = $Utilisateur->getMedecin();
    }
    

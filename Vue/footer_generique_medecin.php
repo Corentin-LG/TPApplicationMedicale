@@ -6,7 +6,7 @@
                                 </div>
                                 <div class="Social-NW-body">
 
-                                    <a href="#"><i class="icon-list"></i> Mes consultations</a>
+                                    <a href="medecin_affichage_patient"><i class="icon-list"></i> Mes consultations</a>
                                     <br/>
                                     <a href="#"><i class="icon-user"></i> Mes patients</a>
                                     <br/>
