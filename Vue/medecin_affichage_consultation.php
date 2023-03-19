@@ -15,7 +15,7 @@ require('header_generique_medecin.php');
                                         <tr>
                                             <th>ID</th>
                                             <th>Date</th>
-                                            <th>Salle</th>
+                                            <th>Compte Rendu</th>
                                             <th>ID Patient</th>
                                             <th>ID Médecin</th>
                                         </tr>
@@ -27,12 +27,12 @@ require('header_generique_medecin.php');
                                             $Medecin = new Medecin();
                                             $Medecin = $Utilisateur->getMedecin();
                                             $Medecin->setId_Medecin($_SESSION["ID_CONNECTED_USER"]);
-                                            $result = $Util->getAllRendezVousByMedic($Medecin->getId_Medecin());
+                                            $result = $Util->getAllConsultationByMedic($Medecin->getId_Medecin());
                                             foreach ($result as $rdv) {
                                                 echo '<tr>';
-                                                echo '<td>' . $rdv->getId_Rendez_Vous() . '</td>';
-                                                echo '<td>' . $rdv->getDate_Rendez_Vous() . '</td>';
-                                                echo '<td>' . $rdv->getSalle_Rendez_Vous() . '</td>';
+                                                echo '<td>' . $rdv->getId_Consultation() . '</td>';
+                                                echo '<td>' . $rdv->getDate_Consultation() . '</td>';
+                                                echo '<td>' . $rdv->getCompte_Rendu_Consultation() . '</td>';
                                                 echo '<td>' . $rdv->getId_Patient() . '</td>';
                                                 echo '<td>' . $rdv->getId_Medecin() . '</td>';
                                                 echo '</tr>';

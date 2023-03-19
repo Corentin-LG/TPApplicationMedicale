@@ -273,6 +273,70 @@ class Util {
     }
 
     /**
+     *
+     * @param type $Id_Medecin
+     * @return \Rendez_vous[]
+     */
+    public function getAllRendezVousByMedic($Id_Medecin) : array {
+        $RDVs = array();
+        
+        $Query = $Query = "SELECT * FROM rendez_vous WHERE Id_Medecin=" . $Id_Medecin;
+        
+        $this->dbConnection();
+        
+        if ($this->mysqli->connect_error) {
+            die('Erreur de connexion ('.$this->mysqli->connect_errno.')'. $this->mysqli->connect_error);
+        }
+        
+        else{
+            if(($result = $this->mysqli->query($Query))){
+                while($ligne = $result->fetch_assoc()){
+                    $unRDV = new Rendez_Vous();
+                    $unRDV->Id_Rendez_Vous = $ligne['Id_Rendez_Vous'];
+                    $unRDV->Date_Rendez_Vous = $ligne['Date_Rendez_Vous'];
+                    $unRDV->Salle_Rendez_Vous = $ligne['Salle_Rendez_Vous'];
+                    $unRDV->Id_Patient = $ligne['Id_Patient'];
+                    $unRDV->Id_Medecin = $ligne['Id_Medecin'];
+                    array_push($RDVs,$unRDV);
+                }
+            }
+        }
+        return $RDVs;
+    }
+
+    /**
+     *
+     * @param type $Id_Medecin
+     * @return \Consultation[]
+     */
+    public function getAllConsultationByMedic($Id_Medecin) : array {
+        $Consultations = array();
+        
+        $Query = $Query = "SELECT * FROM consultation WHERE Id_Medecin=" . $Id_Medecin;
+        
+        $this->dbConnection();
+        
+        if ($this->mysqli->connect_error) {
+            die('Erreur de connexion ('.$this->mysqli->connect_errno.')'. $this->mysqli->connect_error);
+        }
+        
+        else{
+            if(($result = $this->mysqli->query($Query))){
+                while($ligne = $result->fetch_assoc()){
+                    $uneConsult = new Consultation();
+                    $uneConsult->Id_Consultation= $ligne['Id_Consultation'];
+                    $uneConsult->Date_Consultation = $ligne['Date_Consultation'];
+                    $uneConsult->Compte_Rendu_Consultation = $ligne['Compte_Rendu_Consultation'];
+                    $uneConsult->Id_Patient = $ligne['Id_Patient'];
+                    $uneConsult->Id_Medecin = $ligne['Id_Medecin'];
+                    array_push($Consultations,$uneConsult);
+                }
+            }
+        }
+        return $Consultations;
+    }
+
+    /**
      * 
      * @param type $Id_Medecin
      * @return \Patient[]
@@ -280,7 +344,7 @@ class Util {
     public function searchAllConsultationPatientOfMedic($Id_Medecin){
         $Patients = array();
         
-        $Query = $Query = "SELECT * FROM patient WHERE Id_Patient IN (SELECT Id_Patient FROM rendez_vous WHERE Id_Medecin='" . $Id_Medecin . "')";;
+        $Query = $Query = "SELECT * FROM patient WHERE Id_Patient IN (SELECT Id_Patient FROM consultation WHERE Id_Medecin='" . $Id_Medecin . "')";
 
         $this->dbConnection();
         
@@ -310,4 +374,42 @@ class Util {
         return $Patients;
     }
 
+/**
+     * 
+     * @param type $Id_Medecin
+     * @return \Patient[]
+     */
+    public function searchAllRendezVousPatientOfMedic($Id_Medecin){
+        $Patients = array();
+        
+        $Query = $Query = "SELECT * FROM patient WHERE Id_Patient IN (SELECT Id_Patient FROM consultation WHERE Id_Medecin='" . $Id_Medecin . "')";
+
+        $this->dbConnection();
+        
+        if ($this->mysqli->connect_error) {
+            die('Erreur de connexion ('.$this->mysqli->connect_errno.')'. $this->mysqli->connect_error);
+        }
+        
+        else{
+            if(($result = $this->mysqli->query($Query))){
+                while($ligne = $result->fetch_assoc()){
+                    $unPatient = new Patient();
+                    $unPatient->Id_Patient = $ligne['Id_Patient'];
+                    $unPatient->Nom_Patient = $ligne['Nom_Patient'];
+                    $unPatient->Prenom_Patient = $ligne['Prenom_Patient'];
+                    $unPatient->Sexe_Patient = $ligne['Sexe_Patient'];
+                    $unPatient->Adresse_Patient = $ligne['Adresse_Patient'];
+                    $unPatient->Ville_Patient = $ligne['Ville_Patient'];
+                    $unPatient->Departement_Patient = $ligne['Departement_Patient'];
+                    $unPatient->Date_Naissance_Patient = $ligne['Date_Naissance_Patient'];
+                    $unPatient->Situation_Familiale_Patient = $ligne['Situation_Familiale_Patient'];
+                    $unPatient->Affiliation_Mutuelle = $ligne['Affiliation_Mutuelle'];
+                    $unPatient->Date_Creation_Dossier = $ligne['Date_Creation_Dossier'];
+                    array_push($Patients,$unPatient);
+                }
+            }
+        }
+        return $Patients;
+    }
 }
+

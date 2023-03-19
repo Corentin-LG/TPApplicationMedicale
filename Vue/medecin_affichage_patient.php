@@ -33,6 +33,19 @@ require('header_generique_medecin.php');
                                         $Medecin = new Medecin();
                                         $Medecin = $Utilisateur->getMedecin();
                                         $Medecin->setId_Medecin($_SESSION["ID_CONNECTED_USER"]);
+                                        $result = $Util->searchAllRendezVousPatientOfMedic($Medecin->getId_Medecin());
+                                        foreach ($result as $patient) {
+                                            echo '<tr>';
+                                            echo '<td>' . $patient->getId_Patient() . '</td>';
+                                            echo '<td>' . $patient->getNom_Patient() . '</td>';
+                                            echo '<td>' . $patient->getPrenom_Patient() . '</td>';
+                                            echo '<td>' . $patient->getSexe_Patient() . '</td>';
+                                            echo '<td>' . $patient->getDate_Naissance_Patient() . '</td>';
+                                            echo '<td>' . $patient->getSituation_Familiale_Patient() . '</td>';
+                                            echo '<td>' . $patient->getAffiliation_Mutuelle() . '</td>';
+                                            echo '<td>' . $patient->getDate_Creation_Dossier() . '</td>';
+                                            echo '</tr>';
+                                        }
                                         $result = $Util->searchAllConsultationPatientOfMedic($Medecin->getId_Medecin());
                                         foreach ($result as $patient) {
                                             echo '<tr>';

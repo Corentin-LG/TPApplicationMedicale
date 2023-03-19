@@ -18,8 +18,6 @@ require('header_generique_secretaire.php');
             <input type="submit" name="valider" value="Chercher" />
             <input type="reset" name="effacer" value="Effacer" />
         </form>
-        <!-- <input type="text" name="N_Patient"><br>
-                                <button onclick="getNP()">Click me</button> -->
     </div>
 </div>
 

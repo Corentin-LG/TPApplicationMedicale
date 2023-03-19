@@ -6,11 +6,11 @@
                                 </div>
                                 <div class="Social-NW-body">
 
-                                    <a href="medecin_affichage_patient.php"><i class="icon-list"></i> Mes consultations</a>
+                                    <a href="medecin_affichage_consultation.php"><i class="icon-list"></i> Mes consultations</a>
                                     <br/>
-                                    <a href="#"><i class="icon-user"></i> Mes patients</a>
+                                    <a href="medecin_affichage_patient.php"><i class="icon-user"></i> Mes patients</a>
                                     <br/>
-                                    <a href="#"><i class="icon-calendar"></i> Mes rendez-vous</a>
+                                    <a href="medecin_affichage_rendez_vous.php"><i class="icon-calendar"></i> Mes rendez-vous</a>
                                     <hr/>
                                     <a href="../Controller/deconnexion.php"><i class="icon-off"></i> Se déconnecter </a>
                                     
