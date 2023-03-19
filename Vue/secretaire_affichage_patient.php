@@ -13,7 +13,7 @@ require('header_generique_secretaire.php');
 
                             <form action="../Controller/secretaire_affichage_patient_bdd.php" method="get">
 
-                                <table>
+                                <table id="table1">
                                     <thead>
                                         <tr>
                                             <th>Id_Patient</th>

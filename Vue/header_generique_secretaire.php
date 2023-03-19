@@ -58,4 +58,3 @@ if ($_SESSION["acces"] != 'y') {
                     </div>
 
 </html>
-?>
