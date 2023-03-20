@@ -241,6 +241,35 @@ class Util {
         return $Patients;
     }
 
+    /**
+     *
+     * @return \Medecin[]
+     */
+    public function getAllMedecin() : array {
+        $Medecins = array();
+        
+        $Query = "SELECT * FROM medecin";
+        
+        $this->dbConnection();
+        
+        if ($this->mysqli->connect_error) {
+            die('Erreur de connexion ('.$this->mysqli->connect_errno.')'. $this->mysqli->connect_error);
+        }
+        
+        else{
+            if(($result = $this->mysqli->query($Query))){
+                while($ligne = $result->fetch_assoc()){
+                    $unMedecin = new Medecin();
+                    $unMedecin->Id_Medecin = $ligne['Id_Medecin'];
+                    $unMedecin->Nom_Medecin = $ligne['Nom_Medecin'];
+                    $unMedecin->Prenom_Medecin = $ligne['Prenom_Medecin'];
+                    array_push($Medecins,$unMedecin);
+                }
+            }
+        }
+        return $Medecins;
+    }
+
      /**
      *
      * @return \Rendez_vous[]

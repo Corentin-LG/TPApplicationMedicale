@@ -5,6 +5,8 @@
 
                             </div>
                             <div class="Social-NW-body">
+                                <a href="secretaire_affichage_medecin.php"><i class="icon-heart"></i> Liste des Medecins</a>
+                                <br />
                                 <a href="secretaire_affichage_patient.php"><i class="icon-user"></i> Liste des patients</a>
                                 <br />
                                 <a href="secretaire_afficher_un_patient.php"><i class="icon-search"></i> Chercher un patient</a>
