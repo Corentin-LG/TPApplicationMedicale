@@ -12,6 +12,8 @@
                                     <br/>
                                     <a href="medecin_affichage_consultation.php"><i class="icon-list"></i> Mes consultations</a>
                                     <br/>
+                                    <a href="medecin_consultation_par_date.php"><i class="icon-search"></i> Afficher une consultation par date</a>
+                                    <br/>
                                     <a href="medecin_affichage_rendez_vous.php"><i class="icon-calendar"></i> Mes rendez-vous</a>
                                     <br/>
                                     <a href="medecin_rendez_vous_par_date.php"><i class="icon-search"></i> Afficher un rendez-vous par date</a>

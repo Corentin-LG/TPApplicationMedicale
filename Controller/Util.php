@@ -208,7 +208,7 @@ class Util {
      * @param type $Nom_Patient
      * @return \Patient[]
      */
-    public function searchPatientByName($Nom_Patient){
+    public function searchPatientByName($Nom_Patient) : array {
         $Patients = array();
         
         $Query = "SELECT * FROM patient WHERE Nom_Patient = '" . $_POST['Nom_Patient'] . "'";
@@ -246,7 +246,7 @@ class Util {
      * @param type $Date_Rendez_Vous
      * @return \Rendez_Vous[]
      */
-    public function searchRendez_VousByDate($Date_Rendez_Vous){
+    public function searchRendez_VousByDate($Date_Rendez_Vous) : array {
         $RDVs = array();
         
         $Query = "SELECT * FROM rendez_vous WHERE Date_Rendez_Vous = '" . $_POST['Date_Rendez_Vous'] . "'";
@@ -271,6 +271,38 @@ class Util {
             }
         }
         return $RDVs;
+    }
+
+    /**
+     * 
+     * @param type $Date_Consultation
+     * @return \Consultation[]
+     */
+    public function searchConsultationByDate($Date_Consultation) : array {
+        $Consultations = array();
+        
+        $Query = "SELECT * FROM consultation WHERE Date_Consultation = '" . $_POST['Date_Consultation'] . "'";
+        
+        $this->dbConnection();
+        
+        if ($this->mysqli->connect_error) {
+            die('Erreur de connexion ('.$this->mysqli->connect_errno.')'. $this->mysqli->connect_error);
+        }
+        
+        else{
+            if(($result = $this->mysqli->query($Query))){
+                while($ligne = $result->fetch_assoc()){
+                    $uneConsult = new Consultation();
+                    $uneConsult->Id_Consultation = $ligne['Id_Consultation'];
+                    $uneConsult->Date_Consultation = $ligne['Date_Consultation'];
+                    $uneConsult->Compte_Rendu_Consultation = $ligne['Compte_Rendu_Consultation'];
+                    $uneConsult->Id_Patient = $ligne['Id_Patient'];
+                    $uneConsult->Id_Medecin = $ligne['Id_Medecin'];
+                    array_push($Consultations,$uneConsult);
+                }
+            }
+        }
+        return $Consultations;
     }
 
     /**
@@ -402,7 +434,7 @@ class Util {
      * @param type $Id_Medecin
      * @return \Patient[]
      */
-    public function searchAllConsultationPatientOfMedic($Id_Medecin){
+    public function searchAllConsultationPatientOfMedic($Id_Medecin) : array {
         $Patients = array();
         
         $Query = $Query = "SELECT * FROM patient WHERE Id_Patient IN (SELECT Id_Patient FROM consultation WHERE Id_Medecin='" . $Id_Medecin . "')";
@@ -440,7 +472,7 @@ class Util {
      * @param type $Id_Medecin
      * @return \Patient[]
      */
-    public function searchAllRendezVousPatientOfMedic($Id_Medecin){
+    public function searchAllRendezVousPatientOfMedic($Id_Medecin) : array {
         $Patients = array();
         
         $Query = $Query = "SELECT * FROM patient WHERE Id_Patient IN (SELECT Id_Patient FROM rendez_vous WHERE Id_Medecin='" . $Id_Medecin . "')";

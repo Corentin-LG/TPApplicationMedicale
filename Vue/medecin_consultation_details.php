@@ -4,7 +4,7 @@ require('header_generique_medecin.php');
 <html>
                     <div class="Left-body">
                         <div class="Left-body-head">
-                            Détails du rendez-vous
+                            Détails de la consultation
                         </div>
                         <div class="infos">
 
@@ -13,22 +13,22 @@ require('header_generique_medecin.php');
                             <table>
                                 <thead>
                                     <tr>
-                                        <th>ID Rendez-Vous</th>
+                                        <th>ID Consultation</th>
                                         <th>Date</th>
-                                        <th>Salle</th>
+                                        <th>Compte rendu</th>
                                         <th>ID Patient</th>
                                         <th>ID Médecin</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $Date_Rendez_Vous = $_POST["Date_Rendez_Vous"];
-                                    $tableauRDV = $Util->searchRendez_VousByDate($Date_Rendez_Vous);
+                                    $Date_Rendez_Vous = $_POST["Date_Consultation"];
+                                    $tableauRDV = $Util->searchConsultationByDate($Date_Rendez_Vous);
                                     foreach ($tableauRDV as $RDV) {
                                         echo "<tr>";
-                                        echo "<td>" . $RDV->getId_Rendez_Vous() . "</td>";
-                                        echo "<td>" . $RDV->getDate_Rendez_Vous() . "</td>";
-                                        echo "<td>" . $RDV->getSalle_Rendez_Vous() . "</td>";
+                                        echo "<td>" . $RDV->getId_Consultation() . "</td>";
+                                        echo "<td>" . $RDV->getDate_Consultation() . "</td>";
+                                        echo "<td>" . $RDV->getCompte_Rendu_Consultation() . "</td>";
                                         echo "<td>" . $RDV->getId_Patient() . "</td>";
                                         echo "<td>" . $RDV->getId_Medecin() . "</td>";
                                         echo "</tr>";
