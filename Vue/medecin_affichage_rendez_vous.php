@@ -4,7 +4,7 @@ require('header_generique_medecin.php');
 <html>
                     <div class="Left-body">
                         <div class="Left-body-head">
-                            Consulter rendez vous
+                            Mes rendez-vous
                         </div>
                         <div class="infos">
 

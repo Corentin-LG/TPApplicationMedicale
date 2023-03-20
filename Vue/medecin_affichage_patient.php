@@ -4,7 +4,7 @@ require('header_generique_medecin.php');
 <html>
                     <div class="Left-body">
                         <div class="Left-body-head">
-                            Consulter patients
+                            Mes patients
                         </div>
                         <div class="infos">
 
@@ -12,7 +12,7 @@ require('header_generique_medecin.php');
                         <div class="en_bref">
 
                             <form>
-
+                            <span><strong><u>Consultation</u></strong></span>
                                 <table id="table1">
                                     <thead>
                                         <tr>
@@ -28,12 +28,8 @@ require('header_generique_medecin.php');
                                     </thead>
                                     <tbody>
                                         <?php
-                                        $Util = new Util();
-                                        $Utilisateur = $Util->getUtilisateurById($_SESSION["ID_CONNECTED_USER"]);
-                                        $Medecin = new Medecin();
-                                        $Medecin = $Utilisateur->getMedecin();
                                         $Medecin->setId_Medecin($_SESSION["ID_CONNECTED_USER"]);
-                                        $result = $Util->searchAllRendezVousPatientOfMedic($Medecin->getId_Medecin());
+                                        $result = $Util->searchAllConsultationPatientOfMedic($Medecin->getId_Medecin());
                                         foreach ($result as $patient) {
                                             echo '<tr>';
                                             echo '<td>' . $patient->getId_Patient() . '</td>';
@@ -46,7 +42,26 @@ require('header_generique_medecin.php');
                                             echo '<td>' . $patient->getDate_Creation_Dossier() . '</td>';
                                             echo '</tr>';
                                         }
-                                        $result = $Util->searchAllConsultationPatientOfMedic($Medecin->getId_Medecin());
+                                        ?>
+                                    </tbody>
+                                </table>
+                                <span><strong><u>Rendez-vous</u></strong></span>
+                                <table id="table1">
+                                    <thead>
+                                        <tr>
+                                            <th>Id_Patient</th>
+                                            <th>Nom</th>
+                                            <th>Prénom</th>
+                                            <th>Sexe</th>
+                                            <th>Date de naissance</th>
+                                            <th>Situation familiale</th>
+                                            <th>Affiliation mutuelle</th>
+                                            <th>Date de création du dossier</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        $result = $Util->searchAllRendezVousPatientOfMedic($Medecin->getId_Medecin());
                                         foreach ($result as $patient) {
                                             echo '<tr>';
                                             echo '<td>' . $patient->getId_Patient() . '</td>';

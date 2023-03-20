@@ -4,7 +4,7 @@ require('header_generique_medecin.php');
 <html>
 <div class="Left-body">
     <div class="Left-body-head">
-        Afficher un patient
+        Afficher mon patient
     </div>
     <div class="infos">
 

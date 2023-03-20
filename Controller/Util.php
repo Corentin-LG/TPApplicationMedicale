@@ -411,7 +411,7 @@ class Util {
     public function searchAllRendezVousPatientOfMedic($Id_Medecin){
         $Patients = array();
         
-        $Query = $Query = "SELECT * FROM patient WHERE Id_Patient IN (SELECT Id_Patient FROM consultation WHERE Id_Medecin='" . $Id_Medecin . "')";
+        $Query = $Query = "SELECT * FROM patient WHERE Id_Patient IN (SELECT Id_Patient FROM rendez_vous WHERE Id_Medecin='" . $Id_Medecin . "')";
 
         $this->dbConnection();
         
