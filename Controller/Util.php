@@ -242,6 +242,38 @@ class Util {
     }
 
     /**
+     * 
+     * @param type $Date_Rendez_Vous
+     * @return \Rendez_Vous[]
+     */
+    public function searchRendez_VousByDate($Date_Rendez_Vous){
+        $RDVs = array();
+        
+        $Query = "SELECT * FROM rendez_vous WHERE Date_Rendez_Vous = '" . $_POST['Date_Rendez_Vous'] . "'";
+        
+        $this->dbConnection();
+        
+        if ($this->mysqli->connect_error) {
+            die('Erreur de connexion ('.$this->mysqli->connect_errno.')'. $this->mysqli->connect_error);
+        }
+        
+        else{
+            if(($result = $this->mysqli->query($Query))){
+                while($ligne = $result->fetch_assoc()){
+                    $unRDV = new Rendez_Vous();
+                    $unRDV->Id_Rendez_Vous = $ligne['Id_Rendez_Vous'];
+                    $unRDV->Date_Rendez_Vous = $ligne['Date_Rendez_Vous'];
+                    $unRDV->Salle_Rendez_Vous = $ligne['Salle_Rendez_Vous'];
+                    $unRDV->Id_Patient = $ligne['Id_Patient'];
+                    $unRDV->Id_Medecin = $ligne['Id_Medecin'];
+                    array_push($RDVs,$unRDV);
+                }
+            }
+        }
+        return $RDVs;
+    }
+
+    /**
      *
      * @return \Medecin[]
      */
